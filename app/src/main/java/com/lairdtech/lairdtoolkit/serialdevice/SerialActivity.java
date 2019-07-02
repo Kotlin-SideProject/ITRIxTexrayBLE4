@@ -30,6 +30,10 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.lairdtech.lairdtoolkit.R;
 import com.lairdtech.lairdtoolkit.bases.BaseActivity;
 
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 public class SerialActivity extends BaseActivity implements SerialManagerUiCallback{
@@ -105,7 +109,7 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 
 		YAxis leftAxis = mChart.getAxisLeft();
 		leftAxis.setTextColor(Color.WHITE);
-		leftAxis.setAxisMaximum(20f);
+		leftAxis.setAxisMaximum(3300f);
 		leftAxis.setAxisMinimum(0f);
 		leftAxis.setDrawGridLines(true);
 
@@ -130,7 +134,7 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 				while (true){
 					plotData = true;
 					try{
-						Thread.sleep(1);
+						Thread.sleep(500);
 
 					}catch (InterruptedException e){
 						e.printStackTrace();
@@ -153,18 +157,27 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 			}
 //			Toast.makeText(this,dataReceived,Toast.LENGTH_LONG).show();
 				///string translate  1/n2/n3/n4/n5/n
-				StringTokenizer st  = new StringTokenizer(dataReceived,"\n");
-				int n = st.countTokens();
-				while (st.hasMoreTokens()){
-					data.addEntry(new Entry(set.getEntryCount(),Integer.parseInt(st.nextToken())),0);
-				}
+			StringTokenizer st  = new StringTokenizer(dataReceived,"\n");
+
+            while (st.hasMoreTokens() ){
+//            			確認字串長度
+				String s = st.nextToken();
+				decoder d = new decoder();
+//				System.out.println(s.length())
+				if (s.length() ==5)
+
+					data.addEntry(new Entry(set.getEntryCount(),d.decoderData(s)),0);
+            }
+
+
+
 
 //			data.addEntry(new Entry(set.getEntryCount(),Integer.parseInt(dataReceived)),0);
 			data.notifyDataChanged();
 
 			mChart.notifyDataSetChanged();
 
-			mChart.setVisibleXRange(25,25);
+			mChart.setVisibleXRange(100,100);
 
 			mChart.moveViewToX(data.getEntryCount());
 
@@ -179,7 +192,7 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 		set.setHighlightEnabled(false);
 		set.setDrawValues(false);
 		set.setDrawCircles(false);
-		set.setCubicIntensity(0.2f);
+		set.setCubicIntensity(0.1f);
 		set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
 		return set;
 	}
