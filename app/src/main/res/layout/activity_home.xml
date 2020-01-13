@@ -22,14 +22,14 @@ This heading must NOT be removed from the file.
         android:id="@+id/logoLaird"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/descr_content_general"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:scaleType="fitXY"
-        android:src="@drawable/logo_laird" />
+        android:src="@drawable/logo_itri" />
 
     <GridView
         android:id="@+id/grid"
