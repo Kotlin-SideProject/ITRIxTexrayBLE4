@@ -7,13 +7,13 @@ The information contained herein is property of Laird Technologies.
 Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided.
 This heading must NOT be removed from the file.
 -->
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         style="@style/customParentLayout"
         android:background="#E8E8E8"
         android:orientation="vertical" >
@@ -26,39 +26,184 @@ This heading must NOT be removed from the file.
             android:layout_height="wrap_content"
             layout="@layout/item_scan_button" />
 
-        <com.github.mikephil.charting.charts.LineChart
-            android:layout_width="368dp"
-            android:layout_height="250dp"
-            android:id="@+id/chart1"
-            tools:layour_editor_absoluteY="0dp"
-            tools:layout_editor_absoluteX="8dp"></com.github.mikephil.charting.charts.LineChart>
 
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="644dp">
 
-        <TextView
-            android:id="@+id/labelVspOutTv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="#E8E8E8"
-            android:text="@string/console"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+            <com.timqi.sectorprogressview.ColorfulRingProgressView
+                android:id="@+id/crpv3"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:bgColor="#e1e1e1"
+                app:fgColorEnd="#ff4800"
+                app:fgColorStart="#ffe400"
+                app:layout_constraintBottom_toBottomOf="@+id/crpv2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:percent="25"
+                app:startAngle="0"
+                app:strokeWidth="15dp" />
 
-        <ScrollView
-            android:id="@+id/scrollViewVspOut"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/border" >
+            <com.timqi.sectorprogressview.ColorfulRingProgressView
+                android:id="@+id/crpv2"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginBottom="40dp"
+                app:bgColor="#e1e1e1"
+                app:fgColorEnd="#ff4800"
+                app:fgColorStart="#ffe400"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintHorizontal_bias="0.562"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:percent="50"
+                app:startAngle="0"
+                app:strokeWidth="15dp" />
+
+            <com.timqi.sectorprogressview.ColorfulRingProgressView
+                android:id="@+id/crpv1"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:bgColor="#e1e1e1"
+                app:fgColorEnd="#ff4800"
+                app:fgColorStart="#ffe400"
+                app:layout_constraintBottom_toBottomOf="@+id/crpv2"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:percent="75"
+                app:startAngle="0"
+                app:strokeWidth="15dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.33" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.66" />
 
             <TextView
-                android:id="@+id/valueVspOutTv"
-                android:layout_width="match_parent"
+                android:id="@+id/tvPercent3"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:textIsSelectable="true"
-                android:textSize="20sp" />
-        </ScrollView>
+                android:text="25"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="@+id/crpv3"
+                app:layout_constraintEnd_toEndOf="@+id/crpv3"
+                app:layout_constraintStart_toStartOf="@+id/crpv3"
+                app:layout_constraintTop_toTopOf="@+id/crpv3" />
+
+            <TextView
+                android:id="@+id/tvPercent2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="@+id/crpv2"
+                app:layout_constraintEnd_toEndOf="@+id/crpv2"
+                app:layout_constraintStart_toStartOf="@+id/crpv2"
+                app:layout_constraintTop_toTopOf="@+id/crpv2" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="75"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="@+id/crpv1"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/crpv1"
+                app:layout_constraintTop_toTopOf="@+id/crpv1" />
+
+            <TextView
+                android:id="@+id/tv_quadriceps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:text="Quadriceps"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/crpv1"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/crpv1" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Biceps"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_quadriceps"
+                app:layout_constraintEnd_toEndOf="@+id/crpv2"
+                app:layout_constraintStart_toStartOf="@+id/crpv2" />
+
+            <TextView
+                android:id="@+id/tv_gluteus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gluteus "
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                app:layout_constraintEnd_toEndOf="@+id/crpv3"
+                app:layout_constraintStart_toStartOf="@+id/crpv3" />
+
+            <ImageView
+                android:id="@+id/iv_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:src="@drawable/athos_main_without_muscle"
+                app:layout_constraintBottom_toTopOf="@+id/textView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/iv_quadriceps"
+                android:layout_width="60dp"
+                android:layout_height="76dp"
+                android:src="@drawable/athos_quadriceps"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.269"
+                app:layout_constraintStart_toStartOf="@+id/iv_background"
+                app:layout_constraintTop_toTopOf="@+id/iv_background"
+                app:layout_constraintVertical_bias="0.71" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="61dp"
+                android:layout_height="46dp"
+                android:src="@drawable/athos_gluteus"
+                app:layout_constraintBottom_toTopOf="@+id/textView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.754"
+                app:layout_constraintStart_toStartOf="@+id/iv_background"
+                app:layout_constraintTop_toTopOf="@+id/iv_background"
+                app:layout_constraintVertical_bias="0.526" />
+
+            <ImageView
+                android:id="@+id/iv_gluteus"
+                android:layout_width="58dp"
+                android:layout_height="72dp"
+                android:src="@drawable/athos_biceps"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.757"
+                app:layout_constraintStart_toStartOf="@+id/iv_background"
+                app:layout_constraintTop_toTopOf="@+id/iv_background"
+                app:layout_constraintVertical_bias="0.725" />
+
+
+        </android.support.constraint.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/containerVspIn"
@@ -83,11 +228,6 @@ This heading must NOT be removed from the file.
                 android:text="@string/btn_send"
                 android:textSize="20sp" />
         </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/containerCounters"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
 
     </LinearLayout>

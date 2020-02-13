@@ -39,32 +39,15 @@ import java.util.StringTokenizer;
 public class SerialActivity extends BaseActivity implements SerialManagerUiCallback{
 
 	private Button mBtnSend;
-	private EditText mValueVspInputEt;
-	private ScrollView mScrollViewVspOut;
-	private TextView mValueVspOutTv;
-//	private TextView mValueRxCounterTv;
-//	private TextView mValueTxCounterTv;
-
 	private SerialManager mSerialManager;
 
 	private boolean isPrefClearTextAfterSending = false;
 
 
-	//Angus ADD BY 2019/05/31
+	//Angus ADD BY 2020/02/13
 
-	private LineChart mChart;
-	private Thread thread;
-	private boolean plotData = true;
 
-//	private EditText imeiInput;
-//	private EditText zipcardInput;
-//	private TextView resStartLabel;
-//	private DatePicker resStartDateInput;
-//	private TimePicker resStartTimeInput;
-//	private TextView resEndLabel;
-//	private DatePicker resEndDateInput;
-//	private TimePicker resEndTimeInput;
-//	private Switch lockOpToggle;
+
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
@@ -78,123 +61,6 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 		initialiseDialogFoundDevices("VSP");
 		mBtnSend.setEnabled(true);
 
-		mChart = (LineChart)findViewById(R.id.chart1);
-		mChart.getDescription().setEnabled(false);
-//        mChart.getDescription().setText("Real Time EMG Signal");
-		mChart.getDescription().setTextColor(Color.RED);
-
-		mChart.setTouchEnabled(true);
-		mChart.setDragEnabled(true);
-		mChart.setScaleEnabled(true);
-		mChart.setDrawGridBackground(true);
-		mChart.setPinchZoom(true);
-		mChart.setBackgroundColor(Color.BLACK);
-
-
-		LineData data = new LineData();
-		data.setValueTextColor(Color.WHITE);
-		mChart.setData(data);
-
-		Legend l = mChart.getLegend();
-
-		l.setForm(Legend.LegendForm.LINE);
-		l.setTextColor(Color.WHITE);
-
-		XAxis x1 = mChart.getXAxis();
-		x1.setTextColor(Color.WHITE);
-		x1.setDrawGridLines(true);
-		x1.setAvoidFirstLastClipping(true);
-		x1.setEnabled(false);
-//		x1.setAxisMaximum(100f);
-
-		YAxis leftAxis = mChart.getAxisLeft();
-		leftAxis.setTextColor(Color.WHITE);
-		leftAxis.setAxisMaximum(3300f);
-		leftAxis.setAxisMinimum(0f);
-		leftAxis.setDrawGridLines(true);
-
-		YAxis rightAxis = mChart.getAxisRight();
-		rightAxis.setEnabled(false);
-
-		mChart.getAxisLeft().setDrawGridLines(true);
-		mChart.getXAxis().setDrawGridLines(true);
-		mChart.setDrawBorders(true);
-
-		startPlot();
-	}
-
-
-	private  void startPlot(){
-		if (thread != null){
-			thread.interrupt();
-		}
-		thread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				while (true){
-					plotData = true;
-					try{
-						Thread.sleep(500);
-
-					}catch (InterruptedException e){
-						e.printStackTrace();
-
-					}
-				}
-			}
-		});
-		thread.start();
-
-	}
-
-	private void addEntry1(final String dataReceived){
-		LineData data = mChart.getData();
-		if(data != null){
-			LineDataSet set  = (LineDataSet) data.getDataSetByIndex(0);
-			if (set == null){
-				set = createSet();
-				data.addDataSet(set);
-			}
-//			Toast.makeText(this,dataReceived,Toast.LENGTH_LONG).show();
-				///string translate  1/n2/n3/n4/n5/n
-			StringTokenizer st  = new StringTokenizer(dataReceived,"\n");
-
-            while (st.hasMoreTokens() ){
-//            			確認字串長度
-				String s = st.nextToken();
-				decoder d = new decoder();
-//				System.out.println(s.length())
-				if (s.length() ==5)
-
-					data.addEntry(new Entry(set.getEntryCount(),d.decoderData(s)),0);
-            }
-
-
-
-
-//			data.addEntry(new Entry(set.getEntryCount(),Integer.parseInt(dataReceived)),0);
-			data.notifyDataChanged();
-
-			mChart.notifyDataSetChanged();
-
-			mChart.setVisibleXRange(100,100);
-
-			mChart.moveViewToX(data.getEntryCount());
-
-		}
-	}
-
-	private LineDataSet createSet(){
-		LineDataSet set  = new LineDataSet(null,"Real Time EMG Signal");
-		set.setAxisDependency(YAxis.AxisDependency.LEFT);
-		set.setLineWidth(3f);
-		set.setColor(Color.MAGENTA);
-		set.setHighlightEnabled(false);
-		set.setDrawValues(false);
-		set.setDrawCircles(false);
-		set.setCubicIntensity(0.1f);
-		set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-		return set;
 	}
 
 	/*
@@ -206,21 +72,6 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 	protected void bindViews(){
 		super.bindViews();
 		mBtnSend = (Button) findViewById(R.id.btnSend);
-		mScrollViewVspOut = (ScrollView) findViewById(R.id.scrollViewVspOut);
-		mValueVspInputEt = (EditText) findViewById(R.id.valueVspInputEt);
-		mValueVspOutTv = (TextView) findViewById(R.id.valueVspOutTv);
-//		mValueRxCounterTv = (TextView) findViewById(R.id.valueRxCounterTv);
-//		mValueTxCounterTv = (TextView) findViewById(R.id.valueTxCounterTv);
-
-//		imeiInput = (EditText) findViewById(R.id.imeiInput_view);
-//		zipcardInput = (EditText) findViewById(R.id.zipcardInput_view);
-//		resStartLabel = (TextView) findViewById(R.id.resStartLabel_view);
-//		resStartDateInput = (DatePicker) findViewById(R.id.resStartDateInput_view);
-//		resStartTimeInput = (TimePicker) findViewById(R.id.resStartTimeInput_view);
-//		resEndLabel = (TextView) findViewById(R.id.resEndLabel_view);
-//		resEndDateInput = (DatePicker) findViewById(R.id.resEndDateInput_view);
-//		resEndTimeInput = (TimePicker) findViewById(R.id.resEndTimeInput_view);
-//		lockOpToggle = (Switch) findViewById(R.id.lockOpToggle_switch);
 	}
 
 	@Override
@@ -232,62 +83,6 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 			@Override
 			public void onClick(View v) {
 
-				/*
-				 * *********************
-				 * to send data to module
-				 * *********************
-				 */
-//				String data = mValueVspInputEt.getText().toString();
-//				if(data != null){
-//					mBtnSend.setEnabled(false);
-//					if(mValueVspOutTv.getText().length() <= 0){
-//						mValueVspOutTv.append(">");
-//					} else{
-//						mValueVspOutTv.append("\n\n>");
-//					}
-//
-//					mSerialManager.startDataTransfer(data + "\r");
-//
-//					InputMethodManager inputManager = (InputMethodManager)
-//							getSystemService(Context.INPUT_METHOD_SERVICE);
-//
-//					inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-//							InputMethodManager.HIDE_NOT_ALWAYS);
-//
-//					if(isPrefClearTextAfterSending == true){
-//						mValueVspInputEt.setText("");
-//					} else{
-//						// do not clear the text from the editText
-//					}
-//
-//				}
-
-
-//				String imeiString = imeiInput.getText().toString();
-//				String zipcardString = zipcardInput.getText().toString();
-//				String resStart = Integer.toString(resStartDateInput.getMonth()+1) + "/" +
-//						Integer.toString(resStartDateInput.getDayOfMonth()) + "/" +
-//						Integer.toString(resStartDateInput.getYear()) + " " +
-//						Integer.toString(resStartTimeInput.getCurrentHour()) + ":" +
-//						Integer.toString(resStartTimeInput.getCurrentMinute());
-//				String resEnd = Integer.toString(resEndDateInput.getMonth()+1) + "/" +
-//						Integer.toString(resEndDateInput.getDayOfMonth()) + "/" +
-//						Integer.toString(resEndDateInput.getYear()) + " " +
-//						Integer.toString(resEndTimeInput.getCurrentHour()) + ":" +
-//						Integer.toString(resEndTimeInput.getCurrentMinute());
-//				String lockOp = "";
-//				if(lockOpToggle.isChecked())
-//					lockOp = lockOpToggle.getTextOn().toString();
-//				else
-//					lockOp = lockOpToggle.getTextOff().toString();
-//
-//				String zipData = "IMEI: " + imeiString + ", ZIPCARD: " + zipcardString +
-//						", START: " + resStart + ", END: " + resEnd + ", OP: " + lockOp;
-//				if(zipData != null){
-//					mValueVspOutTv.append(zipData);
-//				} else {
-//					mValueVspOutTv.append("");
-//				}
 
 			}
 		});
@@ -334,12 +129,7 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 		switch (item.getItemId()) {
 		
 		case R.id.action_clear:
-			mValueVspOutTv.setText("");
 			mSerialManager.getVSPDevice().clearRxAndTxCounter();
-
-//			mValueRxCounterTv.setText("0");
-//			mValueTxCounterTv.setText("0");
-
 			break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -433,9 +223,6 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				mValueVspOutTv.append(dataSend);
-//				mValueTxCounterTv.setText("" + mSerialManager.getVSPDevice().getTxCounter());
-//				mScrollViewVspOut.smoothScrollTo(0, mValueVspOutTv.getBottom());
 			}
 		});
 	}
@@ -445,10 +232,8 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-//				mValueVspOutTv.append(dataReceived);
-				addEntry1(dataReceived);
-//				mValueRxCounterTv.setText("" + mSerialManager.getVSPDevice().getRxCounter());
-//				mScrollViewVspOut.smoothScrollTo(0, mValueVspOutTv.getBottom());
+//				addEntry1(dataReceived);
+
 			}
 		});
 	}
@@ -456,16 +241,6 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 	@Override
 	public void onUiEMGChange(final String dataReceived) {
 
-//		runOnUiThread(new Runnable() {
-//			@Override
-//			public void run() {
-////				mValueHeartRate.setText(mCharHrMeasurement + " bpm");
-//				while(plotData == true){
-//					addEntry1(dataReceived);
-////					plotData = false;
-//				}
-//			}
-//		});
 	}
 
 	@Override
