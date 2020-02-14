@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Angus\\AndroidStudioProjects\\ITRI-EMG-project\\ITRI_TexRay\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
+            "outputFile": "C:\\Users\\Angus\\AndroidStudioProjects\\ITRI-EMG-project\\ITRIxTexray\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Angus\\AndroidStudioProjects\\ITRI-EMG-project\\ITRI_TexRay\\app\\src\\main\\res\\values-v11\\styles.xml",
+                    "source": "C:\\Users\\Angus\\AndroidStudioProjects\\ITRI-EMG-project\\ITRIxTexray\\app\\src\\main\\res\\values-v11\\styles.xml",
                     "from": {
                         "startLines": "6",
                         "startColumns": "4",

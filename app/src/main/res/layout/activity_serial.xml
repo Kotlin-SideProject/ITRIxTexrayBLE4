@@ -28,8 +28,138 @@ This heading must NOT be removed from the file.
 
 
         <android.support.constraint.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="644dp">
+            android:id="@+id/constraintlayout"
+            android:layout_width="match_parent"
+            android:layout_height="731dp">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.33245382" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.6622691" />
+
+            <ImageView
+                android:id="@+id/iv_background"
+                android:layout_width="380dp"
+                android:layout_height="543dp"
+                android:src="@drawable/athos_main_without_muscle"
+                app:layout_constraintEnd_toEndOf="@id/constraintlayout"
+                app:layout_constraintStart_toStartOf="@id/constraintlayout"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_quadriceps"
+                android:layout_width="88dp"
+                android:layout_height="72dp"
+                android:src="@drawable/athos_quadriceps"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_background"
+                app:layout_constraintEnd_toEndOf="@id/iv_background"
+                app:layout_constraintHorizontal_bias="0.25"
+                app:layout_constraintStart_toStartOf="@+id/iv_background"
+                app:layout_constraintTop_toTopOf="@+id/iv_background"
+                app:layout_constraintVertical_bias="0.62" />
+
+            <ImageView
+                android:id="@+id/iv_biceps"
+                android:layout_width="61dp"
+                android:layout_height="46dp"
+                android:src="@drawable/athos_gluteus"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_background"
+                app:layout_constraintEnd_toEndOf="@id/iv_background"
+                app:layout_constraintHorizontal_bias="0.758"
+                app:layout_constraintStart_toStartOf="@+id/iv_background"
+                app:layout_constraintTop_toTopOf="@+id/iv_background"
+                app:layout_constraintVertical_bias="0.52" />
+
+            <ImageView
+                android:id="@+id/iv_gluteus"
+                android:layout_width="87dp"
+                android:layout_height="70dp"
+                android:src="@drawable/athos_biceps"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_background"
+                app:layout_constraintEnd_toEndOf="@id/iv_background"
+                app:layout_constraintHorizontal_bias="0.78"
+                app:layout_constraintStart_toStartOf="@+id/iv_background"
+                app:layout_constraintTop_toTopOf="@+id/iv_background"
+                app:layout_constraintVertical_bias="0.653" />
+
+            <android.support.constraint.Barrier
+                android:id="@+id/barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="top" />
+
+            <android.support.constraint.Barrier
+                android:id="@+id/barrier2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="top" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quadriceps"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:text="Biceps"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_background"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintHorizontal_bias="0.515"
+                app:layout_constraintStart_toStartOf="@+id/guideline" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gluteus"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+            <com.timqi.sectorprogressview.ColorfulRingProgressView
+                android:id="@+id/crpv1"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="16dp"
+                app:bgColor="#e1e1e1"
+                app:fgColorEnd="#ff4800"
+                app:fgColorStart="#ffe400"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:percent="75"
+                app:startAngle="0"
+                app:strokeWidth="15dp" />
+
+            <TextView
+                android:id="@+id/tvPercent1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="75"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="@+id/crpv1"
+                app:layout_constraintEnd_toEndOf="@+id/crpv1"
+                app:layout_constraintStart_toStartOf="@+id/crpv1"
+                app:layout_constraintTop_toTopOf="@+id/crpv1" />
 
             <com.timqi.sectorprogressview.ColorfulRingProgressView
                 android:id="@+id/crpv3"
@@ -45,162 +175,42 @@ This heading must NOT be removed from the file.
                 app:startAngle="0"
                 app:strokeWidth="15dp" />
 
-            <com.timqi.sectorprogressview.ColorfulRingProgressView
-                android:id="@+id/crpv2"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginBottom="40dp"
-                app:bgColor="#e1e1e1"
-                app:fgColorEnd="#ff4800"
-                app:fgColorStart="#ffe400"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintHorizontal_bias="0.562"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:percent="50"
-                app:startAngle="0"
-                app:strokeWidth="15dp" />
-
-            <com.timqi.sectorprogressview.ColorfulRingProgressView
-                android:id="@+id/crpv1"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                app:bgColor="#e1e1e1"
-                app:fgColorEnd="#ff4800"
-                app:fgColorStart="#ffe400"
-                app:layout_constraintBottom_toBottomOf="@+id/crpv2"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintStart_toStartOf="parent"
-                app:percent="75"
-                app:startAngle="0"
-                app:strokeWidth="15dp" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.33" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.66" />
-
             <TextView
                 android:id="@+id/tvPercent3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="25"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="@+id/crpv3"
                 app:layout_constraintEnd_toEndOf="@+id/crpv3"
                 app:layout_constraintStart_toStartOf="@+id/crpv3"
                 app:layout_constraintTop_toTopOf="@+id/crpv3" />
+
+            <com.timqi.sectorprogressview.ColorfulRingProgressView
+                android:id="@+id/crpv2"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:bgColor="#e1e1e1"
+                app:fgColorEnd="#ff4800"
+                app:fgColorStart="#ffe400"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintHorizontal_bias="0.562"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="@+id/crpv1"
+                app:percent="50"
+                app:startAngle="0"
+                app:strokeWidth="15dp" />
 
             <TextView
                 android:id="@+id/tvPercent2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="50"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="@+id/crpv2"
                 app:layout_constraintEnd_toEndOf="@+id/crpv2"
                 app:layout_constraintStart_toStartOf="@+id/crpv2"
                 app:layout_constraintTop_toTopOf="@+id/crpv2" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="75"
-                android:textSize="25sp"
-                app:layout_constraintBottom_toBottomOf="@+id/crpv1"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintStart_toStartOf="@+id/crpv1"
-                app:layout_constraintTop_toTopOf="@+id/crpv1" />
-
-            <TextView
-                android:id="@+id/tv_quadriceps"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:text="Quadriceps"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/crpv1"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintStart_toStartOf="@+id/crpv1" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Biceps"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_quadriceps"
-                app:layout_constraintEnd_toEndOf="@+id/crpv2"
-                app:layout_constraintStart_toStartOf="@+id/crpv2" />
-
-            <TextView
-                android:id="@+id/tv_gluteus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Gluteus "
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView2"
-                app:layout_constraintEnd_toEndOf="@+id/crpv3"
-                app:layout_constraintStart_toStartOf="@+id/crpv3" />
-
-            <ImageView
-                android:id="@+id/iv_background"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:src="@drawable/athos_main_without_muscle"
-                app:layout_constraintBottom_toTopOf="@+id/textView2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <ImageView
-                android:id="@+id/iv_quadriceps"
-                android:layout_width="60dp"
-                android:layout_height="76dp"
-                android:src="@drawable/athos_quadriceps"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_background"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.269"
-                app:layout_constraintStart_toStartOf="@+id/iv_background"
-                app:layout_constraintTop_toTopOf="@+id/iv_background"
-                app:layout_constraintVertical_bias="0.71" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="61dp"
-                android:layout_height="46dp"
-                android:src="@drawable/athos_gluteus"
-                app:layout_constraintBottom_toTopOf="@+id/textView2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.754"
-                app:layout_constraintStart_toStartOf="@+id/iv_background"
-                app:layout_constraintTop_toTopOf="@+id/iv_background"
-                app:layout_constraintVertical_bias="0.526" />
-
-            <ImageView
-                android:id="@+id/iv_gluteus"
-                android:layout_width="58dp"
-                android:layout_height="72dp"
-                android:src="@drawable/athos_biceps"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_background"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.757"
-                app:layout_constraintStart_toStartOf="@+id/iv_background"
-                app:layout_constraintTop_toTopOf="@+id/iv_background"
-                app:layout_constraintVertical_bias="0.725" />
 
 
         </android.support.constraint.ConstraintLayout>

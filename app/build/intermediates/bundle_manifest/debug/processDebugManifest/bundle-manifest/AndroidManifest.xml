@@ -12,8 +12,8 @@ This heading must NOT be removed from the file.
     android:versionName="4.18.1.1" >
 
     <uses-sdk
-        android:minSdkVersion="15"
-        android:targetSdkVersion="21" />
+        android:minSdkVersion="19"
+        android:targetSdkVersion="29" />
 
     <uses-feature
         android:name="android.hardware.bluetooth_le"
@@ -83,10 +83,12 @@ This heading must NOT be removed from the file.
             android:screenOrientation="portrait" >
         </activity>
 
-        <provider
-            android:name="com.android.tools.ir.server.InstantRunContentProvider"
-            android:authorities="com.lairdtech.lairdtoolkit.com.android.tools.ir.server.InstantRunContentProvider"
-            android:multiprocess="true" />
+        <meta-data
+            android:name="android.support.VERSION"
+            android:value="26.1.0" />
+        <meta-data
+            android:name="android.arch.lifecycle.VERSION"
+            android:value="27.0.0-SNAPSHOT" />
     </application>
 
 </manifest>
