@@ -11,12 +11,15 @@ package com.lairdtech.lairdtoolkit.serialdevice;
 import android.bluetooth.BluetoothGatt;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.service.notification.NotificationListenerService;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -29,20 +32,26 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.lairdtech.lairdtoolkit.R;
 import com.lairdtech.lairdtoolkit.bases.BaseActivity;
+import com.timqi.sectorprogressview.ColorfulRingProgressView;
 
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.NoSuchElementException;
+import java.util.Random;
 import java.util.StringTokenizer;
 
 public class SerialActivity extends BaseActivity implements SerialManagerUiCallback{
 
+	private static final String TAG = SerialActivity.class.getSimpleName();
 	private Button mBtnSend;
 	private SerialManager mSerialManager;
-
+	String s0 = "";
 	private boolean isPrefClearTextAfterSending = false;
-
+	ImageView ivQuadriceps, ivBiceps, ivGluteus;
+	ColorfulRingProgressView crpv1, crpv2, crpv3;
+	TextView tvPercent1, tvPercent2, tvPercent3;
+	int progress = 0;
 
 	//Angus ADD BY 2020/02/13
 
@@ -63,15 +72,65 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 
 	}
 
+	private void addEntry(String dataReceived){
+			///string translate  1/n2/n3/n4/n5/n
+			dataReceived = s0 +dataReceived;
+//		Log.d(TAG, "addEntry: " + dataReceived);
+		StringTokenizer st  = new StringTokenizer(dataReceived,"\n");
+			while (st.hasMoreTokens() ){
+//            			確認字串長度
+				String s = st.nextToken();
+				decoder d = new decoder(String.valueOf(s));
+				Log.d(TAG, "dataReceived: " + s + "decoderdata" + d.decoderData());
+				Log.d(TAG, "mappingColor " +d.mappingColor());
+				Log.d(TAG, "MVIC: " + d.MVIC());
+				if (s.length() == 5){
+					switch (d.decoderChannel()){
+						case 1:
+							ivQuadriceps.setColorFilter(Color.argb(100, 255, d.mappingColor(), 0));
+							crpv1.setPercent(d.MVIC());
+							tvPercent1.setText(d.MVIC() + "");
+							break;
+
+						case 2:
+							ivBiceps.setColorFilter(Color.argb(100, 255, d.mappingColor(), 0));
+							crpv2.setPercent(d.MVIC());
+							tvPercent2.setText(d.MVIC() + "");
+							break;
+
+						case 3:
+							ivGluteus.setColorFilter(Color.argb(100, 255, d.mappingColor(), 0));
+							crpv3.setPercent(d.MVIC());
+							tvPercent3.setText(d.MVIC() + "");
+							break;
+					}
+				}
+				else if(s.length() < 5 ){
+						s0 = s;
+				}
+			}
+
+	}
+
 	/*
 	 * *************************************
 	 * UI methods
 	 * *************************************
 	 */
+
 	@Override
 	protected void bindViews(){
 		super.bindViews();
 		mBtnSend = (Button) findViewById(R.id.btnSend);
+		ivQuadriceps = findViewById(R.id.iv_quadriceps);
+		ivBiceps = findViewById(R.id.iv_biceps);
+		ivGluteus = findViewById(R.id.iv_gluteus);
+		crpv1 = findViewById(R.id.crpv1);
+		crpv2 = findViewById(R.id.crpv2);
+		crpv3 = findViewById(R.id.crpv3);
+		tvPercent1 = findViewById(R.id.tvPercent1);
+		tvPercent2 = findViewById(R.id.tvPercent2);
+		tvPercent3 = findViewById(R.id.tvPercent3);
 	}
 
 	@Override
@@ -232,7 +291,7 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-//				addEntry1(dataReceived);
+				addEntry(dataReceived);
 
 			}
 		});

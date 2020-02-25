@@ -48,8 +48,8 @@ This heading must NOT be removed from the file.
 
             <ImageView
                 android:id="@+id/iv_background"
-                android:layout_width="380dp"
-                android:layout_height="543dp"
+                android:layout_width="382dp"
+                android:layout_height="379dp"
                 android:src="@drawable/athos_main_without_muscle"
                 app:layout_constraintEnd_toEndOf="@id/constraintlayout"
                 app:layout_constraintStart_toStartOf="@id/constraintlayout"
@@ -62,10 +62,10 @@ This heading must NOT be removed from the file.
                 android:src="@drawable/athos_quadriceps"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_background"
                 app:layout_constraintEnd_toEndOf="@id/iv_background"
-                app:layout_constraintHorizontal_bias="0.25"
+                app:layout_constraintHorizontal_bias="0.244"
                 app:layout_constraintStart_toStartOf="@+id/iv_background"
                 app:layout_constraintTop_toTopOf="@+id/iv_background"
-                app:layout_constraintVertical_bias="0.62" />
+                app:layout_constraintVertical_bias="0.664" />
 
             <ImageView
                 android:id="@+id/iv_biceps"
@@ -86,10 +86,10 @@ This heading must NOT be removed from the file.
                 android:src="@drawable/athos_biceps"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_background"
                 app:layout_constraintEnd_toEndOf="@id/iv_background"
-                app:layout_constraintHorizontal_bias="0.78"
+                app:layout_constraintHorizontal_bias="0.779"
                 app:layout_constraintStart_toStartOf="@+id/iv_background"
                 app:layout_constraintTop_toTopOf="@+id/iv_background"
-                app:layout_constraintVertical_bias="0.653" />
+                app:layout_constraintVertical_bias="0.708" />
 
             <android.support.constraint.Barrier
                 android:id="@+id/barrier"
@@ -117,7 +117,7 @@ This heading must NOT be removed from the file.
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="20dp"
                 android:text="Biceps"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_background"
