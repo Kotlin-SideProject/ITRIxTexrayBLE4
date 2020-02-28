@@ -25,6 +25,7 @@ This heading must NOT be removed from the file.
 
     <application
         android:allowBackup="true"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -82,13 +83,6 @@ This heading must NOT be removed from the file.
             android:label="@string/title_activity_batch"
             android:screenOrientation="portrait" >
         </activity>
-
-        <meta-data
-            android:name="android.support.VERSION"
-            android:value="26.1.0" />
-        <meta-data
-            android:name="android.arch.lifecycle.VERSION"
-            android:value="27.0.0-SNAPSHOT" />
     </application>
 
 </manifest>
