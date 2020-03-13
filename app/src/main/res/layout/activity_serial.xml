@@ -53,7 +53,7 @@ This heading must NOT be removed from the file.
                 android:src="@drawable/athos_main_without_muscle"
                 app:layout_constraintEnd_toEndOf="@id/constraintlayout"
                 app:layout_constraintStart_toStartOf="@id/constraintlayout"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/chart1" />
 
             <ImageView
                 android:id="@+id/iv_quadriceps"
@@ -90,7 +90,7 @@ This heading must NOT be removed from the file.
                 app:layout_constraintStart_toStartOf="@+id/iv_background"
                 app:layout_constraintTop_toTopOf="@+id/iv_background"
                 app:layout_constraintVertical_bias="0.708" />
-            
+
 
             <TextView
                 android:id="@+id/textView"
@@ -200,6 +200,15 @@ This heading must NOT be removed from the file.
                 app:layout_constraintEnd_toEndOf="@+id/crpv2"
                 app:layout_constraintStart_toStartOf="@+id/crpv2"
                 app:layout_constraintTop_toTopOf="@+id/crpv2" />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart1"
+                android:layout_width="341dp"
+                android:layout_height="230dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layour_editor_absoluteY="0dp"></com.github.mikephil.charting.charts.LineChart>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

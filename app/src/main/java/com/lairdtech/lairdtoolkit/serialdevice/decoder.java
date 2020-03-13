@@ -2,7 +2,7 @@ package com.lairdtech.lairdtoolkit.serialdevice;
 
 public class decoder {
     String s;
-    float Max = 10000f;
+    float Max = 3300f;
 
     public decoder(String s, int max) {
         this.s = s;
@@ -13,9 +13,12 @@ public class decoder {
         this.s = s;
     }
 
-    public double decoderData (){
-        double n = Double.parseDouble(s);
-        double data = n % 10000f;
+    public decoder() {
+    }
+
+    public int decoderData (){
+        int n = Integer.parseInt(s);
+        int data = n % 10000;
 //        data = data/1000;
         return data ;
     }

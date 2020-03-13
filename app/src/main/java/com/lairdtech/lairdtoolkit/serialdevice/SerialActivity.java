@@ -52,6 +52,7 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 	ColorfulRingProgressView crpv1, crpv2, crpv3;
 	TextView tvPercent1, tvPercent2, tvPercent3;
 	int progress = 0;
+	private LineChart mChart;
 
 	//Angus ADD BY 2020/02/13
 
@@ -70,20 +71,76 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 		initialiseDialogFoundDevices("VSP");
 		mBtnSend.setEnabled(true);
 
+		setChart();
+
+	}
+
+	private void setChart() {
+		mChart = (LineChart)findViewById(R.id.chart1);
+		mChart.getDescription().setEnabled(false);
+//        mChart.getDescription().setText("Real Time EMG Signal");
+		mChart.getDescription().setTextColor(Color.RED);
+
+		mChart.setTouchEnabled(true);
+		mChart.setDragEnabled(true);
+		mChart.setScaleEnabled(true);
+		mChart.setDrawGridBackground(true);
+		mChart.setPinchZoom(true);
+		mChart.setBackgroundColor(Color.BLACK);
+
+
+		LineData data = new LineData();
+		data.setValueTextColor(Color.WHITE);
+		mChart.setData(data);
+
+		Legend l = mChart.getLegend();
+
+		l.setForm(Legend.LegendForm.LINE);
+		l.setTextColor(Color.WHITE);
+
+		XAxis x1 = mChart.getXAxis();
+		x1.setTextColor(Color.WHITE);
+		x1.setDrawGridLines(true);
+		x1.setAvoidFirstLastClipping(true);
+		x1.setEnabled(false);
+//		x1.setAxisMaximum(100f);
+
+		YAxis leftAxis = mChart.getAxisLeft();
+		leftAxis.setTextColor(Color.WHITE);
+		leftAxis.setAxisMaximum(4000f);
+		leftAxis.setAxisMinimum(-1000f);
+		leftAxis.setDrawGridLines(true);
+
+		YAxis rightAxis = mChart.getAxisRight();
+		rightAxis.setEnabled(false);
+
+		mChart.getAxisLeft().setDrawGridLines(true);
+		mChart.getXAxis().setDrawGridLines(true);
+		mChart.setDrawBorders(true);
+	}
+
+	private LineDataSet createSet(){
+		LineDataSet set  = new LineDataSet(null,"Real Time EMG Signal");
+		set.setAxisDependency(YAxis.AxisDependency.LEFT);
+		set.setLineWidth(3f);
+		set.setColor(Color.MAGENTA);
+		set.setHighlightEnabled(false);
+		set.setDrawValues(false);
+		set.setDrawCircles(false);
+		set.setCubicIntensity(0.1f);
+		set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+		return set;
 	}
 
 	private void addEntry(String dataReceived){
-			///string translate  1/n2/n3/n4/n5/n
+		///string translate  1/n2/n3/n4/n5/n
 			dataReceived = s0 +dataReceived;
-//		Log.d(TAG, "addEntry: " + dataReceived);
+//		Log.d(TAG, "dataReceived: \n" + dataReceived);
 		StringTokenizer st  = new StringTokenizer(dataReceived,"\n");
 			while (st.hasMoreTokens() ){
-//            			確認字串長度
+		//            			確認字串長度
 				String s = st.nextToken();
 				decoder d = new decoder(String.valueOf(s));
-				Log.d(TAG, "dataReceived: " + s + "decoderdata" + d.decoderData());
-				Log.d(TAG, "mappingColor " +d.mappingColor());
-				Log.d(TAG, "MVIC: " + d.MVIC());
 				if (s.length() == 5){
 					switch (d.decoderChannel()){
 						case 1:
@@ -104,19 +161,82 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 							tvPercent3.setText(d.MVIC() + "");
 							break;
 					}
+
 				}
 				else if(s.length() < 5 ){
 						s0 = s;
 				}
 			}
-
-	}
+		}
 
 	/*
 	 * *************************************
 	 * UI methods
 	 * *************************************
 	 */
+	private void addEntry1(final String dataReceived){
+		LineData data = mChart.getData();
+		if(data != null){
+			LineDataSet set  = (LineDataSet) data.getDataSetByIndex(0);
+			if (set == null){
+				set = createSet();
+				data.addDataSet(set);
+			}
+
+			///string translate  1/n2/n3/n4/n5/n
+			StringTokenizer st  = new StringTokenizer(dataReceived,"\n");
+//			int n = st.countTokens();
+			while (st.hasMoreTokens()){
+				String s = st.nextToken();
+				Log.d(TAG, "nextToken: " + s);
+				if (s.length()==5){
+					decoder d = new decoder(s);
+					data.addEntry(new Entry(set.getEntryCount(),d.decoderData()),0);
+//					Log.d(TAG, "decoderData: " + d.decoderData());
+				}
+			}
+			data.notifyDataChanged();
+
+			mChart.notifyDataSetChanged();
+
+			mChart.setVisibleXRange(200,200);
+			//mChart.setMaxVisibleValueCount(150);
+
+			//mChart.moveViewToX(data.getEntryCount()-100);
+			mChart.moveViewToX(data.getEntryCount());
+
+		}
+	}
+
+//	private void addEntry1(String dataReceived){
+//		LineData data = mChart.getData();
+//		if(data != null){
+//			LineDataSet set  = (LineDataSet) data.getDataSetByIndex(0);
+//			if (set == null){
+//				set = createSet();
+//				data.addDataSet(set);
+//			}
+////			dataReceived = s0 + dataReceived;
+//			///string translate  1/n2/n3/n4/n5/n
+//			StringTokenizer st  = new StringTokenizer(dataReceived,"\n");
+////			int n = st.countTokens();
+//			while (st.hasMoreTokens()){
+//				String s = st.nextToken();
+//				decoder d = new decoder(s);
+////				if(s.length() == 5){
+//					data.addEntry(new Entry(set.getEntryCount(), d.decoderData()),0);
+////				}else if (s.length() < 5){
+////					s0 = s;
+////				}
+//			}
+//			data.notifyDataChanged();
+//			mChart.notifyDataSetChanged();
+//			mChart.setVisibleXRange(200,200);
+//			mChart.moveViewToX(data.getEntryCount());
+//
+//		}
+//	}
+
 
 	@Override
 	protected void bindViews(){
@@ -291,8 +411,8 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				addEntry1(dataReceived);
 				addEntry(dataReceived);
-
 			}
 		});
 	}
