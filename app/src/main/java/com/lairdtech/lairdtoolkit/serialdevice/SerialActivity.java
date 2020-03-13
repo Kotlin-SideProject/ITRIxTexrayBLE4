@@ -174,7 +174,7 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 	 * UI methods
 	 * *************************************
 	 */
-	private void addEntry1(final String dataReceived){
+	private void addEntry1(String dataReceived){
 		LineData data = mChart.getData();
 		if(data != null){
 			LineDataSet set  = (LineDataSet) data.getDataSetByIndex(0);
@@ -182,17 +182,19 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 				set = createSet();
 				data.addDataSet(set);
 			}
-
+			dataReceived = s0 + dataReceived;
 			///string translate  1/n2/n3/n4/n5/n
 			StringTokenizer st  = new StringTokenizer(dataReceived,"\n");
 //			int n = st.countTokens();
 			while (st.hasMoreTokens()){
 				String s = st.nextToken();
-				Log.d(TAG, "nextToken: " + s);
+//				Log.d(TAG, "nextToken: " + s);
 				if (s.length()==5){
 					decoder d = new decoder(s);
 					data.addEntry(new Entry(set.getEntryCount(),d.decoderData()),0);
-//					Log.d(TAG, "decoderData: " + d.decoderData());
+					Log.d(TAG, "decoderData: " + d.decoderData());
+				}else if(s.length() < 5){
+					s0 = s;
 				}
 			}
 			data.notifyDataChanged();
