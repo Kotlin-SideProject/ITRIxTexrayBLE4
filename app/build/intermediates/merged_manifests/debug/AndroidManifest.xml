@@ -7,7 +7,7 @@ Licensees are granted free, non-transferable use of the information. NO WARRANTY
 This heading must NOT be removed from the file.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lairdtech.lairdtoolkit"
+    package="com.lairdtech.lairdtoolkit2"
     android:versionCode="2"
     android:versionName="4.18.1.1" >
 

@@ -8,16 +8,16 @@
         "source": "C:\\Users\\Angus\\AndroidStudioProjects\\ITRI-EMG-project\\ITRIxTexray\\app\\src\\main\\res\\layout\\activity_blood_pressure.xml"
     },
     {
-        "merged": "C:\\Users\\Angus\\AndroidStudioProjects\\ITRI-EMG-project\\ITRIxTexray\\app\\build\\intermediates\\res\\merged\\debug\\layout_common_connected_device_details.xml.flat",
-        "source": "C:\\Users\\Angus\\AndroidStudioProjects\\ITRI-EMG-project\\ITRIxTexray\\app\\src\\main\\res\\layout\\common_connected_device_details.xml"
+        "merged": "C:\\Users\\Angus\\AndroidStudioProjects\\ITRI-EMG-project\\ITRIxTexray\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_athos_main_without_muscle.png.flat",
+        "source": "C:\\Users\\Angus\\AndroidStudioProjects\\ITRI-EMG-project\\ITRIxTexray\\app\\src\\main\\res\\drawable-hdpi\\athos_main_without_muscle.png"
     },
     {
         "merged": "C:\\Users\\Angus\\AndroidStudioProjects\\ITRI-EMG-project\\ITRIxTexray\\app\\build\\intermediates\\res\\merged\\debug\\menu_home.xml.flat",
         "source": "C:\\Users\\Angus\\AndroidStudioProjects\\ITRI-EMG-project\\ITRIxTexray\\app\\src\\main\\res\\menu\\home.xml"
     },
     {
-        "merged": "C:\\Users\\Angus\\AndroidStudioProjects\\ITRI-EMG-project\\ITRIxTexray\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_athos_main_without_muscle.png.flat",
-        "source": "C:\\Users\\Angus\\AndroidStudioProjects\\ITRI-EMG-project\\ITRIxTexray\\app\\src\\main\\res\\drawable-hdpi\\athos_main_without_muscle.png"
+        "merged": "C:\\Users\\Angus\\AndroidStudioProjects\\ITRI-EMG-project\\ITRIxTexray\\app\\build\\intermediates\\res\\merged\\debug\\layout_common_connected_device_details.xml.flat",
+        "source": "C:\\Users\\Angus\\AndroidStudioProjects\\ITRI-EMG-project\\ITRIxTexray\\app\\src\\main\\res\\layout\\common_connected_device_details.xml"
     },
     {
         "merged": "C:\\Users\\Angus\\AndroidStudioProjects\\ITRI-EMG-project\\ITRIxTexray\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_logo_itri.jpg.flat",

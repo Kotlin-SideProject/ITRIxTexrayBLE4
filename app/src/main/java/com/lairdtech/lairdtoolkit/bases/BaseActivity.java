@@ -366,5 +366,4 @@ public class BaseActivity extends Activity implements BluetoothAdapterWrapperCal
 		isPrefRunInBackground = mSharedPreferences.getBoolean("pref_run_in_background", true);
 		isPrefPeriodicalScan = mSharedPreferences.getBoolean("pref_periodical_scan", true);
 	}
-
 }

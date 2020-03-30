@@ -37,24 +37,36 @@ public class HomeActivity extends BaseActivity{
 
 		initialiseDialogAbout(getResources().getString(R.string.disclaimer_text));
 
+//		final int[] images = {
+////				R.drawable.icon_blood_pressure,
+////				R.drawable.icon_heart_rate,
+////				R.drawable.icon_proximity,
+//				R.drawable.icon_temp,
+//				R.drawable.icon_serial,
+//				R.drawable.icon_ota,
+////				R.drawable.icon_batch
+//		};
+
 		final int[] images = {
-				R.drawable.icon_blood_pressure,
-				R.drawable.icon_heart_rate,
-				R.drawable.icon_proximity,
-				R.drawable.icon_temp,
 				R.drawable.icon_serial,
 				R.drawable.icon_ota,
-				R.drawable.icon_batch
+				R.drawable.icon_temp,
 		};
 
-		final String[] names = {
-				getResources().getString(R.string.label_blood),
-				getResources().getString(R.string.label_heart),
-				getResources().getString(R.string.label_prox),
-				getResources().getString(R.string.label_thermometer),
-				getResources().getString(R.string.label_serial),
-				getResources().getString(R.string.label_ota),
-				getResources().getString(R.string.label_batch)
+//		final String[] names = {
+////				getResources().getString(R.string.label_blood),
+////				getResources().getString(R.string.label_heart),
+////				getResources().getString(R.string.label_prox),
+//				"steering wheel",
+//				"smart pants",
+//				"smart cuff",
+////				getResources().getString(R.string.label_batch)
+//		};
+
+				final String[] names = {
+						"smart pants",
+						"smart cuff",
+						"steering wheel",
 		};
 
 
@@ -72,49 +84,21 @@ public class HomeActivity extends BaseActivity{
 				case 0:
 					isInNewScreen = true;
 
-					intent = new Intent(HomeActivity.this, BloodPressureActivity.class);
+					intent = new Intent(HomeActivity.this, SerialActivity.class);
 					startActivity(intent);
 					break;
 
 				case 1:
 					isInNewScreen = true;
 
-					intent = new Intent(HomeActivity.this, HeartRateActivity.class);
+					intent = new Intent(HomeActivity.this, OTAActivity.class);
 					startActivity(intent);
 					break;
 
 				case 2:
 					isInNewScreen = true;
 
-					intent = new Intent(HomeActivity.this, ProximityActivity.class);
-					startActivity(intent);
-					break;
-
-				case 3:
-					isInNewScreen = true;
-
 					intent = new Intent(HomeActivity.this, ThermometerActivity.class);
-					startActivity(intent);
-					break;
-
-				case 4:
-					isInNewScreen = true;
-
-					intent = new Intent(HomeActivity.this, SerialActivity.class);
-					startActivity(intent);
-					break;
-					
-				case 5:
-					isInNewScreen = true;
-
-					intent = new Intent(HomeActivity.this, OTAActivity.class);
-					startActivity(intent);
-					break;
-					
-				case 6:
-					isInNewScreen = true;
-
-					intent = new Intent(HomeActivity.this, BatchActivity.class);
 					startActivity(intent);
 					break;
 

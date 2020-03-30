@@ -107,7 +107,7 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 
 		YAxis leftAxis = mChart.getAxisLeft();
 		leftAxis.setTextColor(Color.WHITE);
-		leftAxis.setAxisMaximum(4000f);
+		leftAxis.setAxisMaximum(10000f);
 		leftAxis.setAxisMinimum(-1000f);
 		leftAxis.setDrawGridLines(true);
 
@@ -209,36 +209,6 @@ public class SerialActivity extends BaseActivity implements SerialManagerUiCallb
 
 		}
 	}
-
-//	private void addEntry1(String dataReceived){
-//		LineData data = mChart.getData();
-//		if(data != null){
-//			LineDataSet set  = (LineDataSet) data.getDataSetByIndex(0);
-//			if (set == null){
-//				set = createSet();
-//				data.addDataSet(set);
-//			}
-////			dataReceived = s0 + dataReceived;
-//			///string translate  1/n2/n3/n4/n5/n
-//			StringTokenizer st  = new StringTokenizer(dataReceived,"\n");
-////			int n = st.countTokens();
-//			while (st.hasMoreTokens()){
-//				String s = st.nextToken();
-//				decoder d = new decoder(s);
-////				if(s.length() == 5){
-//					data.addEntry(new Entry(set.getEntryCount(), d.decoderData()),0);
-////				}else if (s.length() < 5){
-////					s0 = s;
-////				}
-//			}
-//			data.notifyDataChanged();
-//			mChart.notifyDataSetChanged();
-//			mChart.setVisibleXRange(200,200);
-//			mChart.moveViewToX(data.getEntryCount());
-//
-//		}
-//	}
-
 
 	@Override
 	protected void bindViews(){

@@ -6,7 +6,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.lairdtech.lairdtoolkit"
+        applicationId "com.lairdtech.lairdtoolkit2"
         minSdkVersion 19
         targetSdkVersion 29
 
